@@ -1,6 +1,6 @@
 package com.maximilianmichels.vm.execution.instructions
 
-import com.maximilianmichels.vm.execution.machine.RegisterContext
+import com.maximilianmichels.vm.execution.machine.ExecutionContext
 
 class Noop private constructor() : Instruction {
 
@@ -13,7 +13,7 @@ class Noop private constructor() : Instruction {
         }
     }
 
-    override fun exec(ctx: RegisterContext) {
+    override fun exec(ctx: ExecutionContext) {
 
     }
 }

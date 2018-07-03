@@ -1,6 +1,6 @@
 package com.maximilianmichels.vm.execution.instructions
 
-import com.maximilianmichels.vm.execution.machine.RegisterContext
+import com.maximilianmichels.vm.execution.machine.ExecutionContext
 
 class Halt private constructor() : Instruction {
 
@@ -13,7 +13,7 @@ class Halt private constructor() : Instruction {
         }
     }
 
-    override fun exec(ctx: RegisterContext) {
-        System.exit(0)
+    override fun exec(ctx: ExecutionContext) {
+        ctx.stop()
     }
 }

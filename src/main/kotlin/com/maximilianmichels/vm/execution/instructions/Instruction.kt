@@ -1,8 +1,8 @@
 package com.maximilianmichels.vm.execution.instructions
 
-import com.maximilianmichels.vm.execution.machine.RegisterContext
+import com.maximilianmichels.vm.execution.machine.ExecutionContext
 
 interface Instruction {
 
-    fun exec(ctx : RegisterContext)
+    fun exec(ctx : ExecutionContext)
 }
