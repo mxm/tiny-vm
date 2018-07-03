@@ -11,10 +11,13 @@ fun readByte(inputStream: InputStream) : Int {
 }
 
 fun readInt(inputStream : InputStream) : Int {
-    val bytes = ByteArray(2)
-    if (inputStream.read(bytes) != 2) {
+    val byte1 = inputStream.read()
+    val byte2 = inputStream.read()
+    val byte3 = inputStream.read()
+    val byte4 = inputStream.read()
+    if (byte1 or byte2 or byte3 or byte4 < 0) {
         throw IllegalStateException("Couldn't load int")
     }
-
-    return bytes[1].toInt() or (bytes[0].toInt() shl 16 and 0x00FF)
+    val value = (byte1 shl 24) or (byte2 shl 16) or (byte3 shl 8) or (byte4 shl 0)
+    return value
 }
