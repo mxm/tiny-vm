@@ -6,19 +6,20 @@ import java.io.File
 import java.io.FileNotFoundException
 
 fun main (args : Array<String>) {
-
     val decoder = readFromFile(args)
+    start(decoder)
+}
 
-    val registerContext = DefaultExecutionContext(3)
+fun start(decoder: Decoder) {
+    val executionContext = DefaultExecutionContext(3)
 
     var pc = 0
-    while (true) {
+    while (executionContext.running) {
         val instr = decoder.readInstruction()
         println("$pc Executing ${instr.javaClass.simpleName}")
-        instr.exec(registerContext)
+        instr.exec(executionContext)
         pc++
     }
-
 }
 
 private fun readFromFile(args : Array<String>) : Decoder {
