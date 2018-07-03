@@ -1,6 +1,6 @@
 package com.maximilianmichels.vm;
 
-import com.maximilianmichels.vm.execution.Decode
+import com.maximilianmichels.vm.execution.Decoder
 import com.maximilianmichels.vm.execution.machine.DefaultExecutionContext
 import java.io.File
 import java.io.FileNotFoundException
@@ -21,7 +21,7 @@ fun main (args : Array<String>) {
 
 }
 
-private fun readFromFile(args : Array<String>) : Decode {
+private fun readFromFile(args : Array<String>) : Decoder {
     if (args.size != 1) {
         throw IllegalArgumentException("Only one argument allowed")
     }
@@ -31,5 +31,5 @@ private fun readFromFile(args : Array<String>) : Decode {
         throw FileNotFoundException("$file does not exist")
     }
 
-    return Decode(file.inputStream())
+    return Decoder(file.inputStream())
 }

@@ -4,7 +4,7 @@ import com.maximilianmichels.vm.execution.instructions.Instruction
 import com.maximilianmichels.vm.execution.instructions.InstructionFactory
 import java.io.InputStream
 
-class Decode (private val inputStream: InputStream) {
+class Decoder (private val inputStream: InputStream) {
 
     private val factory : InstructionFactory = InstructionFactory()
 
