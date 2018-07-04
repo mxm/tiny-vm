@@ -1,6 +1,8 @@
 package com.maximilianmichels.vm.execution.instructions
 
 import com.maximilianmichels.vm.execution.machine.ExecutionContext
+import com.maximilianmichels.vm.execution.machine.Opcode
+import java.io.OutputStream
 
 class PrintRegister (val i : Int) : Instruction {
 
@@ -21,4 +23,8 @@ class PrintRegister (val i : Int) : Instruction {
         return i
     }
 
+    override fun serialize(out: OutputStream) {
+        out.write(Opcode.PRINTREG.opCode)
+        out.write(i)
+    }
 }

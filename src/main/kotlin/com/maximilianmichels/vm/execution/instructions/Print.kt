@@ -1,6 +1,9 @@
 package com.maximilianmichels.vm.execution.instructions
 
 import com.maximilianmichels.vm.execution.machine.ExecutionContext
+import com.maximilianmichels.vm.execution.machine.Opcode
+import com.maximilianmichels.vm.execution.util.writeString
+import java.io.OutputStream
 
 class Print (val string : String) : Instruction {
 
@@ -21,4 +24,8 @@ class Print (val string : String) : Instruction {
         return string.hashCode()
     }
 
+    override fun serialize(out: OutputStream) {
+        out.write(Opcode.PRINT.opCode)
+        writeString(string, out)
+    }
 }

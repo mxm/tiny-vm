@@ -1,6 +1,8 @@
 package com.maximilianmichels.vm.execution.instructions
 
 import com.maximilianmichels.vm.execution.machine.ExecutionContext
+import com.maximilianmichels.vm.execution.machine.Opcode
+import java.io.OutputStream
 
 class Noop private constructor() : Instruction {
 
@@ -15,5 +17,9 @@ class Noop private constructor() : Instruction {
 
     override fun exec(ctx: ExecutionContext) {
 
+    }
+
+    override fun serialize(out: OutputStream) {
+        out.write(Opcode.NOOP.opCode)
     }
 }

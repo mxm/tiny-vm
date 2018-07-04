@@ -4,7 +4,7 @@ import com.maximilianmichels.vm.execution.instructions.*
 import com.maximilianmichels.vm.execution.machine.Opcode
 import java.io.*
 
-class Parser (inputStream: InputStream) : Iterator<Instruction>, Iterable<Instruction> {
+class Parser (inputStream: InputStream) : Iterator<Instruction>, Iterable<Instruction>, Closeable {
 
     private val reader = BufferedReader(InputStreamReader(inputStream))
     private var currentLine : String? = null
@@ -44,7 +44,7 @@ class Parser (inputStream: InputStream) : Iterator<Instruction>, Iterable<Instru
         }
     }
 
-    fun close() {
+    override fun close() {
         reader.close()
     }
 

@@ -1,13 +1,19 @@
 package com.maximilianmichels.vm;
 
+import com.maximilianmichels.vm.compiler.Compiler
 import com.maximilianmichels.vm.execution.Decoder
 import com.maximilianmichels.vm.execution.machine.DefaultExecutionContext
+import com.maximilianmichels.vm.frontend.Parser
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileNotFoundException
+import java.io.FileOutputStream
 
 fun main (args : Array<String>) {
     val decoder = readFromFile(args)
-    start(decoder)
+    decoder.use {
+        start(it)
+    }
 }
 
 fun start(decoder: Decoder) {
@@ -32,5 +38,15 @@ private fun readFromFile(args : Array<String>) : Decoder {
         throw FileNotFoundException("$file does not exist")
     }
 
-    return Decoder(file.inputStream())
+    val inputStream = file.inputStream()
+    val parser = Parser(inputStream)
+    val compiler = Compiler(parser)
+
+    val compiledFile = File(file.parent, file.name + ".tiny")
+
+    compiler.use {
+        it.compile(FileOutputStream(compiledFile))
+    }
+
+    return Decoder(FileInputStream(compiledFile))
 }

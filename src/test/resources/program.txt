@@ -1,0 +1,10 @@
+# just a simple program
+PRINT hello world!
+NOOP
+LOAD 0 128
+PRINTREG 0
+LOAD 1 2
+PRINTREG 1
+ADD 0 1 2
+PRINTREG 2
+HALT

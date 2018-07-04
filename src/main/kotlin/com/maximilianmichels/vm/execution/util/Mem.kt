@@ -1,6 +1,7 @@
 package com.maximilianmichels.vm.execution.util
 
 import java.io.InputStream
+import java.io.OutputStream
 
 fun readByte(inputStream: InputStream) : Int {
     val byte = inputStream.read()
@@ -20,4 +21,17 @@ fun readInt(inputStream : InputStream) : Int {
     }
     val value = (byte1 shl 24) or (byte2 shl 16) or (byte3 shl 8) or (byte4 shl 0)
     return value
+}
+
+fun writeInt(value : Int, out : OutputStream) {
+    out.write(value ushr 24)
+    out.write(value ushr 16)
+    out.write(value ushr 8)
+    out.write(value ushr 0)
+}
+
+fun writeString(str: String, out: OutputStream) {
+    val bytes = str.toByteArray(Charsets.UTF_8)
+    writeInt(bytes.size, out)
+    out.write(bytes)
 }
