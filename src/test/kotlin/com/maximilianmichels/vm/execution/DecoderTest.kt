@@ -5,9 +5,6 @@ import com.maximilianmichels.vm.execution.machine.Opcode
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
-import java.io.DataOutputStream
-import java.io.PipedInputStream
-import java.io.PipedOutputStream
 
 class DecoderTest {
 
@@ -67,7 +64,7 @@ class DecoderTest {
     @Test
     fun testPrintRegister() {
         val decoder = tester.setupDecoder()
-        tester.writeOpcode(Opcode.PRINTREGISTER)
+        tester.writeOpcode(Opcode.PRINTREG)
         tester.writeByte(1)
         assertThat(decoder.readInstruction(), `is`(PrintRegister(1) as Instruction))
     }

@@ -15,12 +15,13 @@ class IntegrationTest {
         val decoder = setup()
         val oldOut = System.out
         val byteStream = ByteArrayOutputStream()
+        val newOut = PrintStream(byteStream)
         try {
-            val newOut = PrintStream(byteStream)
             System.setOut(newOut)
             start(decoder)
             newOut.flush()
         } finally {
+            newOut.close()
             System.setOut(oldOut)
         }
         assertThat(byteStream.toString(Charsets.UTF_8.name()), `is`(
@@ -52,14 +53,14 @@ class IntegrationTest {
         tester.writeByte(0)
         tester.writeInt(128)
         // PRINT REGISTER
-        tester.writeOpcode(Opcode.PRINTREGISTER)
+        tester.writeOpcode(Opcode.PRINTREG)
         tester.writeByte(0)
         // LOAD
         tester.writeOpcode(Opcode.LOAD)
         tester.writeByte(1)
         tester.writeInt(2)
         // PRINT REGISTER
-        tester.writeOpcode(Opcode.PRINTREGISTER)
+        tester.writeOpcode(Opcode.PRINTREG)
         tester.writeByte(1)
         // ADD
         tester.writeOpcode(Opcode.ADD)
@@ -67,7 +68,7 @@ class IntegrationTest {
         tester.writeByte(1)
         tester.writeByte(2)
         // PRINT REGISTER
-        tester.writeOpcode(Opcode.PRINTREGISTER)
+        tester.writeOpcode(Opcode.PRINTREG)
         tester.writeByte(2)
         // HALT
         tester.writeOpcode(Opcode.HALT)

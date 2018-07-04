@@ -14,7 +14,7 @@ class InstructionFactory {
             Opcode.LOAD.opCode -> createLoad(inputStream)
             Opcode.ADD.opCode -> createAdd(inputStream)
             Opcode.PRINT.opCode -> createPrint(inputStream)
-            Opcode.PRINTREGISTER.opCode -> createPrintRegister(inputStream)
+            Opcode.PRINTREG.opCode -> createPrintRegister(inputStream)
             Opcode.NOOP.opCode -> Noop.get()
             else -> throw IllegalStateException("Unknown op code")
         }

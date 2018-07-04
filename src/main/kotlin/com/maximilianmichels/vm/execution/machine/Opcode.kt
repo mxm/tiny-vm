@@ -6,5 +6,5 @@ enum class Opcode(val opCode: Int) {
     ADD(2),
     NOOP(9),
     PRINT(42),
-    PRINTREGISTER(43)
+    PRINTREG(43)
 }
