@@ -83,4 +83,19 @@ The output of the above program will be:
 Building
 --------
 
-To build and run tests, execute `gradle build`.
+To build and run tests, execute `gradle build` or create a jar with `gradle jar`.
+
+Running an example
+------------------
+
+1. Run `gradle jar`
+
+2. Go to the directory `build/libs` which contains the
+`tiny-vm.jar` file.
+
+3. Write a program or copy the program in the Frontend section above.
+   Hint: Don't forget to use `HALT` as the last statement.
+
+4. Run the program via `java -jar tiny-vm.jar test.txt`.
+
+5. Enjoy :)
